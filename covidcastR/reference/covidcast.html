@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Fetch only the earliest issue for each observation in a data frame — earliest_issue • covidcast</title>
+<title>covidcast: Client for Delphi's COVIDcast API — covidcast • covidcast</title>
 
 
 <!-- jquery -->
@@ -39,10 +39,11 @@
 
 
 
-<meta property="og:title" content="Fetch only the earliest issue for each observation in a data frame — earliest_issue" />
-<meta property="og:description" content="Since covidcast_signal() can, with the right options, return multiple
-issues for a single observation in a single geo, we may want only the most
-recent for plotting, mapping, or other purposes." />
+<meta property="og:title" content="covidcast: Client for Delphi's COVIDcast API — covidcast" />
+<meta property="og:description" content="The covidcast package provides access to numerous COVID-19 data streams,
+updated daily, covering the United States of America. These include publicly
+reported cases and deaths data, along with data the Delphi research group
+collects or obtains from partners." />
 
 
 
@@ -134,32 +135,52 @@ recent for plotting, mapping, or other purposes." />
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Fetch only the earliest issue for each observation in a data frame</h1>
-    <small class="dont-index">Source: <a href='https://github.com/cmu-delphi/covidcast/blob/main/R-packages/covidcast/R/utils.R'><code>R/utils.R</code></a></small>
-    <div class="hidden name"><code>earliest_issue.Rd</code></div>
+    <h1>covidcast: Client for Delphi's COVIDcast API</h1>
+    <small class="dont-index">Source: <a href='https://github.com/cmu-delphi/covidcast/blob/main/R-packages/covidcast/R/covidcast.R'><code>R/covidcast.R</code></a></small>
+    <div class="hidden name"><code>covidcast.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>Since <code><a href='covidcast_signal.html'>covidcast_signal()</a></code> can, with the right options, return multiple
-issues for a single observation in a single geo, we may want only the most
-recent for plotting, mapping, or other purposes.</p>
+    <p>The covidcast package provides access to numerous COVID-19 data streams,
+updated daily, covering the United States of America. These include publicly
+reported cases and deaths data, along with data the Delphi research group
+collects or obtains from partners.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>earliest_issue</span><span class='op'>(</span><span class='va'>df</span><span class='op'>)</span></pre>
 
-    <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
-    <table class="ref-arguments">
-    <colgroup><col class="name" /><col class="desc" /></colgroup>
-    <tr>
-      <th>df</th>
-      <td><p>A <code>covidcast_signal</code> data frame</p></td>
-    </tr>
-    </table>
 
-    <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
+    <h2 class="hasAnchor" id="finding-data-sources-and-documentation"><a class="anchor" href="#finding-data-sources-and-documentation"></a>Finding data sources and documentation</h2>
 
-    <p>The same <code>covidcast_signal</code> data frame, but with only the earliest
-issue of every observation</p>
+    
+
+
+<p>The COVIDcast API includes:</p><ul>
+<li><p>publicly reported COVID case and death data</p></li>
+<li><p>insurance claims data reporting on COVID-related doctor's visits and
+hospitalizations, obtained from health partners</p></li>
+<li><p>aggregate results from massive COVID symptom surveys conducted by Delphi</p></li>
+<li><p>mobility data aggregated from SafeGraph</p></li>
+<li><p>symptom search trends from Google</p></li>
+</ul>
+
+<p>and numerous other important signals, most available daily at the county
+level.</p>
+<p>Each data stream is identified by its data source and signal names. These are
+documented on the COVIDcast API website:
+<a href='https://cmu-delphi.github.io/delphi-epidata/api/covidcast_signals.html'>https://cmu-delphi.github.io/delphi-epidata/api/covidcast_signals.html</a></p>
+<p>Each data stream has a page giving detailed technical documentation on how
+the data is collected, how it is aggregated, and any limitations or known
+problems with the data.</p>
+    <h2 class="hasAnchor" id="getting-started"><a class="anchor" href="#getting-started"></a>Getting started</h2>
+
+    
+
+
+<p>We recommend the Getting Started vignette, which includes numerous examples
+and is provided online here:
+<a href='https://cmu-delphi.github.io/covidcast/covidcastR/articles/covidcast.html'>https://cmu-delphi.github.io/covidcast/covidcastR/articles/covidcast.html</a></p>
+<p>See also <code><a href='covidcast_signal.html'>covidcast_signal()</a></code> for details on how to obtain COVIDcast data as
+a data frame.</p>
 
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
