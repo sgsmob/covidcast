@@ -114,7 +114,7 @@ unpack_single_card.prediction_card <- function(card) {
 }
 
 #' Unpack a single evaluation card into an unnested tibble
-unpack_single_card.evaluation_card <- function(card) {
+unpack_single_card.score_card <- function(card) {
   card_attr <- attributes(card)
   card %>%
   tidyr::unnest(.data$forecast_distribution) %>%
