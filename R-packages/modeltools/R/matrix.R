@@ -1,27 +1,35 @@
 #' Create a training and prediction matrices for a given ahead.
 #'
 #' @param lagged_df Data frame of lagged data.  It should have the following columns:
-#'     - `geo_value`:  strings of geographic locations
-#'     - `time_value`:  Dates of training data
-#'     - columns of the form `value-{days}:{signal}` whose values correspond to {signal} {days} #'       before `time_value`.
-#'     - columns of the form `value+{days}:{response}` whose values correspond to {response} {days}
-#'       after `time_value`.  Since columns beginning with "value+" are interpretted as the
-#'       response rather than a covariate, observed data from the same day as `time_value` should
-#'       be in columns `value-0:{signal}` rather than `value+0:{signal}`.
+#'     \itemize{
+#'     \item{`geo_value`}{Strings of geographic locations.}
+#'     \item{`time_value`}{Dates of training data.}
+#'     \item{Covariate columns}{Columns with names of the form `value-{days}:{signal}` whose values
+#'         correspond to `{signal}` `{days}` before `time_value`}
+#'     \item{Response columns}{Columns with names of the form `value+{n}:{response}` whose values
+#'         correspond to `{response}` `{n}` incidence period units after `time_value`.  Since
+#'         columns beginning with "value+" are interpretted as the response rather than a
+#'         covariate, observed data from the same day as `time_value` should be in columns
+#'         `value-0:{signal}` rather than `value+0:{signal}`}
+#'     }
 #'     A data frame in this format can be made using `covidcast::aggregate_signals()`.
-#' @param ahead Number of days ahead to forecast
+#' @param ahead Number of incidence period units (i.e., epiweeks, days, etc.) ahead to forecast
 #' @param training_window_size Size of the local training window in days to use. For example, if
 #'     `training_window_size = 14`, then to make a 1-day-ahead forecast on December 15, we train on
 #'     data from December 1 to December 14.
 #'
 #' @return Named list with entries:
-#'     - `train_x`:  Matrix of training data whose columns correspond to the `value-{days}:{signal}`
-#'       columns in `lagged_df`.  The training data consists of the latest date `d` such that there #'       is an observed response at time `d + ahead` and all data from the `training_window_size`
-#'       days prior to it.
-#'     - `train_y`:  Vector of response data from the `value+{ahead}:{response}` column of
-#'       `lagged_df` corresponding to the rows of `train_x`.
-#'     - `predict_x`:  Matrix of prediction data in the same format as `train_x`.  The prediction #'        data contains the most recent `training_window_size` days.
-#'     - `predict_geo_values`:  Vector of `geo_values` corresponding to the rows of `predict_x`.
+#'     \itemize{
+#'     \item{`train_x`}{Matrix of training data whose columns correspond to the
+#'         `value-{days}:{signal}` columns in `lagged_df`.  The training data consists of the
+#'         latest date `d` such that there is an observed response at time `d + ahead` and all data
+#'         from the `training_window_size` days prior to it.}
+#'     \item{`train_y`}{Vector of response data from the `value+{ahead}:{response}` column of
+#'         `lagged_df` corresponding to the rows of `train_x`.}
+#'     \item{`predict_x`}{Matrix of prediction data in the same format as `train_x`.  The
+#'         prediction data contains the most recent `training_window_size` days.}
+#'     \item{`predict_geo_values`}{Vector of `geo_values` corresponding to the rows of `predict_x`.}
+#'     }
 #'
 #' @importFrom tibble tibble
 #'
